@@ -1,0 +1,11 @@
+version: '3.6'
+services:
+  ant:
+    build: .
+    restart: 'always'
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/.next
+    ports:
+      - "5548:3000"

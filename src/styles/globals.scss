@@ -1,0 +1,51 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background: rgb(7, 0, 21);
+    color: #fff;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.font {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.sfont {
+    font-family: 'Supermercado One', cursive;
+}
+
+.nav {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    gap: 2rem;
+    background: rgb(21, 0, 10);
+    color: #fff;
+}
+
+.test {
+    background: rgba(37, 13, 72, 0.727);
+    color: #321b76a1;
+}
+
+// font-family: 'Roboto', sans-serif;
+// font-family: 'Supermercado One', cursive;
+// font-family: 'Yanone Kaffeesatz', sans-serif;
