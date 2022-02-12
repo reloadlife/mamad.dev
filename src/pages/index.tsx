@@ -111,15 +111,21 @@ const Home: NextPage = () => {
 						</Box>
 						<Box sx={{ flex: 9, mt: 2, width: 'max-content' }}>
 							<Typography
-								className="title font"
-								sx={{ width: 'max-content' }}
+								className="font"
+								sx={{
+									fontSize: '2.5rem',
+									fontWeight: '700',
+									marginBottom: '1rem',
+									textAlign: 'left',
+									width: 'max-content',
+								}}
 							>
 								mohammad mahdi afshar
 							</Typography>
 							<Typography
 								sx={{
 									width: 'max-content',
-									mt: -3,
+									mt: -1,
 									fontSize: '1.1rem',
 									opacity: 0.8,
 								}}
