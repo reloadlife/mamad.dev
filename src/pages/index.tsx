@@ -101,6 +101,7 @@ const Home: NextPage = () => {
 									fontSize: 'xx-large',
 									marginTop: '-6rem',
 									border: '7px solid rgb(1, 5, 25)',
+									borderColor: 'rgb(1, 5, 25)',
 									boxShadow:
 										'1.1px 1px 4.9px -8px rgba(0, 0, 0, 0.184), 3.1px 2.6px 9.1px -8px rgba(0, 0, 0, 0.236), 7.5px 6.3px 12.8px -8px rgba(0, 0, 0, 0.278), 25px 21px 17px -8px rgba(0, 0, 0, 0.32);',
 								}}
