@@ -275,11 +275,8 @@ const Home: NextPage = () => {
 						</Box>
 						<Box sx={{ flex: 8 }}>
 							<Typography>
-								a 20 year old fullstack web developer, currently
-								working as a freelancer, i love learning new
-								technologies and solving problems, currently
-								trying to figure out how to use "Go" programming
-								language for better opportunities.
+								a 21 year old fullstack web developer, i love learning new
+								technologies and solving problems.
 							</Typography>
 							<Typography>
 								in my life i try not to waste any time, and
@@ -432,10 +429,54 @@ const Home: NextPage = () => {
 					>
 						<Box sx={{ flex: 2 }}>
 							<Typography className="sfont">
-								My Experiances
+								My Experiences
 							</Typography>
 						</Box>
 						<Box sx={{ flex: 8 }}>
+							<Typography>
+								<Link
+									sx={{
+										textDecoration: 'none',
+										color: 'red',
+										mr: 1,
+									}}
+								>
+									[ SOME WHERE ]
+								</Link>
+								<Link
+									sx={{
+										textDecoration: 'none',
+										color: 'white',
+										opacity: '0.5',
+										mr: 1,
+									}}
+								>
+									— Python Developer
+								</Link>
+								<Link
+									sx={{
+										textDecoration: 'none',
+										color: 'white',
+										opacity: '0.4',
+										mx: 1,
+									}}
+								>
+									2022 - now
+								</Link>
+
+								<Link
+									sx={{
+										textDecoration: 'none',
+										color: 'white',
+										opacity: '0.5',
+										fontSize: '0.7rem',
+										mr: 1,
+									}}
+								>
+									[SOME WHERE]
+								</Link>
+							</Typography>
+
 							<Typography>
 								<Link
 									sx={{
@@ -675,11 +716,15 @@ const Home: NextPage = () => {
 						</Box>
 						<Box sx={{ flex: 8 }}>
 							<Typography>
-								NodeJS, TypeScript, JavaScript, React, Next.JS,
+								NodeJS, TypeScript, JavaScript, React, Mantine, Remix,
+								Next.JS, GraphQL
+								Django, Python, Flask, FastAPI,
 								MaterialUI, TailwindCSS, ChakraUi, HTML5/CSS3,
-								Git, PHP, Laravel, MySQL, Redis, TelegramBots,
+								Git, PHP, Laravel, MySQL, Redis, InfluxDB, MongoDB,
+								Telegram Bots, PostgreSQL, Docker, Kubernetes,
+								Julia, GoLang,
 								Telegram MTProto, Bash, Lua, MoonScript, Ruby,
-								Python, DevOps, Linux, Server Management, Server
+								DevOps, Linux, Server Management, Server
 								Configuration, Virtualization.
 							</Typography>
 						</Box>
@@ -720,7 +765,7 @@ const Home: NextPage = () => {
 						</Box>
 						<Box sx={{ flex: 8 }}>
 							<Typography>
-								Scripting, Front-end, Laravel, Gaming,
+								Ai, MachineLearning, Scripting, Front-end, Laravel, Gaming,
 								Streaming, Premiere Pro, Web Scraping, Docker,
 								Hacking, Pentesting, Virtualization, Learning
 								new Stuff
@@ -738,7 +783,7 @@ const Home: NextPage = () => {
 						}}
 					>
 						<Box sx={{ flex: 2 }}>
-							<Typography className="sfont">Resume</Typography>
+							<Typography className="sfont">Resume [Outdated]</Typography>
 						</Box>
 						<Box sx={{ flex: 8 }}>
 							<Typography>
@@ -781,6 +826,66 @@ const Home: NextPage = () => {
 							<Typography className="sfont">Projects</Typography>
 						</Box>
 						<Box sx={{ flex: 8 }}>
+
+							<Box
+								sx={{
+									display: 'flex',
+									justifyContent: 'space-between',
+								}}
+							>
+								<Typography>
+									<Link
+										sx={{
+											color: 'red',
+											textDecoration: 'none',
+										}}
+										href="https://github.com/reloadlife/freedom-of-internet"
+									>
+										Freedom-Of-Internet
+									</Link>
+								</Typography>
+
+								<Typography sx={{ fontStyle: 'italic' }}>
+									No Pain Self Hosted VPN
+								</Typography>
+
+								<Typography
+									sx={{ fontWeight: '300', opacity: 0.8 }}
+								>
+									2022
+								</Typography>
+							</Box>
+
+							<Box
+								sx={{
+									display: 'flex',
+									justifyContent: 'space-between',
+								}}
+							>
+								<Typography>
+									<Link
+										sx={{
+											color: 'red',
+											textDecoration: 'none',
+										}}
+										href="https://github.com/reloadlife/TeleLib"
+									>
+										@TeleLib/TeleLib
+									</Link>
+								</Typography>
+
+								<Typography sx={{ fontStyle: 'italic' }}>
+									Open Source Telegram NodeJS API Wrapper
+								</Typography>
+
+								<Typography
+									sx={{ fontWeight: '300', opacity: 0.8 }}
+								>
+									2022
+								</Typography>
+							</Box>
+
+
 							<Box
 								sx={{
 									display: 'flex',
@@ -865,6 +970,28 @@ const Home: NextPage = () => {
 									sx={{ fontWeight: '300', opacity: 0.8 }}
 								>
 									2018
+								</Typography>
+							</Box>
+
+							<Box
+								sx={{
+									display: 'flex',
+									justifyContent: 'center',
+									alignItems: 'center',
+									width: '100%',
+									mt: 2
+								}}
+							>
+								<Typography sx={{ fontWeight: 'light' }}>
+									<Link
+										sx={{
+											color: 'white',
+											textDecoration: 'underline',
+										}}
+										href="https://github.com/ReloadLife"
+									>
+										GitHub | My Other random open-source projects
+									</Link>
 								</Typography>
 							</Box>
 						</Box>
