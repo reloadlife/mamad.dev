@@ -1,8 +1,7 @@
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import { green, purple, red } from '@mui/material/colors';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
 	palette: {
