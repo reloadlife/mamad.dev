@@ -48,7 +48,7 @@ const Home: NextPage = () => {
 	const title =
 		'Mohammad Mahdi Afshar | Frontend Developer | محمد مهدی افشار | طراح وب | مدیر برنامه های تحت وب';
 	const description =
-		'20 years old, full stack web developer, FLOSS lover, Linux Enjoyer, Gamer, Music lover. I am a self-taught programmer and I am always trying to learn new things.';
+		'21 years old, full stack web developer, FLOSS lover, Linux Enjoyer, Gamer, Music lover. I am a self-taught programmer and I am always trying to learn new things.';
 	return (
 		<React.Fragment>
 			<Head>
@@ -132,7 +132,7 @@ const Home: NextPage = () => {
 								}}
 								className="font"
 							>
-								20 years old, full stack web developer.
+								21 years old, full stack web developer.
 							</Typography>
 							<Box
 								sx={{
@@ -441,7 +441,7 @@ const Home: NextPage = () => {
 										mr: 1,
 									}}
 								>
-									[ SOME WHERE ]
+									-
 								</Link>
 								<Link
 									sx={{
@@ -473,7 +473,7 @@ const Home: NextPage = () => {
 										mr: 1,
 									}}
 								>
-									[SOME WHERE]
+									-
 								</Link>
 							</Typography>
 
@@ -783,7 +783,7 @@ const Home: NextPage = () => {
 						}}
 					>
 						<Box sx={{ flex: 2 }}>
-							<Typography className="sfont">Resume [Outdated]</Typography>
+							<Typography className="sfont">Resume</Typography>
 						</Box>
 						<Box sx={{ flex: 8 }}>
 							<Typography>
@@ -794,7 +794,7 @@ const Home: NextPage = () => {
 									}}
 									href="/resume.pdf"
 								>
-									Download: Resume.PDF
+									Download: Resume.PDF [Outdated]
 								</Link>
 							</Typography>
 							<Typography>
@@ -839,7 +839,7 @@ const Home: NextPage = () => {
 											color: 'red',
 											textDecoration: 'none',
 										}}
-										href="https://github.com/reloadlife/freedom-of-internet"
+										href="https://github.com/Unleash-The-Internet/freedom-of-internet"
 									>
 										Freedom-Of-Internet
 									</Link>
@@ -868,14 +868,14 @@ const Home: NextPage = () => {
 											color: 'red',
 											textDecoration: 'none',
 										}}
-										href="https://github.com/reloadlife/TeleLib"
+										href="https://github.com/TeleLib/TeleLib"
 									>
 										@TeleLib/TeleLib
 									</Link>
 								</Typography>
 
 								<Typography sx={{ fontStyle: 'italic' }}>
-									Open Source Telegram NodeJS API Wrapper
+									Open Source Telegram API Wrapper
 								</Typography>
 
 								<Typography
