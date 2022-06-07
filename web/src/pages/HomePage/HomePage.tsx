@@ -4,8 +4,10 @@ import {
 	useMantineTheme,
 	createStyles,
 	Button,
+	Box,
 } from '@mantine/core'
 import { Head } from '@redwoodjs/web'
+import { ArrowDown } from 'tabler-icons-react'
 
 const BREAKPOINT = '@media (max-width: 755px)'
 
@@ -59,7 +61,7 @@ const HomePage = () => {
 	const title =
 		'Home | Mohammad Mahdi Afshar | Software Engineer | محمد مهدی افشار'
 
-	const { classes } = useStyles()
+	const { classes, cx } = useStyles()
 	const theme = useMantineTheme()
 
 	return (
@@ -78,45 +80,104 @@ const HomePage = () => {
 				<meta property="og:type" content="website" />
 			</Head>
 
-			<Container size={700}>
-				<h1 className={classes.title}>
-					I am{' '}
-					<Text<'span'>
-						component="span"
-						variant="gradient"
-						gradient={{ from: 'red', to: 'cyan' }}
-						inherit
-					>
-						Mohammad Mahdi Afshar
-					</Text>{' '}
-					{age} Years Old Full Stack Developer.
-				</h1>
+			<Box
+				id="home"
+				sx={{
+					minHeight: '100vh',
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}
+			>
+				<Container size={700}>
+					<h1 className={classes.title}>
+						I am{' '}
+						<Text<'span'>
+							component="span"
+							variant="gradient"
+							gradient={{ from: 'red', to: 'cyan' }}
+							inherit
+						>
+							Mohammad Mahdi Afshar
+						</Text>{' '}
+						{age} Years Old Full Stack Developer.
+					</h1>
 
-				<Text className={classes.description} color="dimmed">
-					I am a{' '}
-					<Text<'span'>
-						component="span"
-						variant="gradient"
-						gradient={{ from: 'red', to: 'cyan' }}
-						inherit
-					>
-						English Translation Student
-					</Text>{' '}
-					who loves coding and developing new tools and services.
-				</Text>
+					<Text className={classes.description} color="dimmed">
+						I am a{' '}
+						<Text<'span'>
+							component="span"
+							variant="gradient"
+							gradient={{ from: 'red', to: 'cyan' }}
+							inherit
+						>
+							English Translation Student
+						</Text>{' '}
+						who loves coding and developing new tools and services.
+					</Text>
 
-				<Button
-					size="xl"
-					sx={{
-						marginTop: theme.spacing.xl,
-					}}
-					className={classes.control}
-					variant="gradient"
-					gradient={{ from: 'red', to: 'cyan' }}
-				>
-					Hire Me
-				</Button>
-			</Container>
+					<Box
+						sx={{
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
+					>
+						<Button
+							size="xl"
+							sx={{
+								marginTop: 60,
+							}}
+							className={classes.control}
+							variant="gradient"
+							gradient={{ from: 'red', to: 'cyan' }}
+						>
+							Hire Me
+						</Button>
+					</Box>
+
+
+					<Box
+						sx={{
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							marginTop: 90,
+						}}
+					>
+						<ArrowDown className="bounce animated" size={60} />
+					</Box>
+				</Container>
+			</Box>
+
+			<Box
+				id="about"
+				sx={{
+					minHeight: '90vh',
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}
+			>
+				<Container size={700}>
+					<h1 className={cx(classes.title, 'cursive-font')}>
+						About Me
+					</h1>
+
+					<Text className={classes.description} color="dimmed">
+						I am a{' '}
+						<Text<'span'>
+							component="span"
+							variant="gradient"
+							gradient={{ from: 'red', to: 'cyan' }}
+							inherit
+						>
+							English Translation Student
+						</Text>{' '}
+						who loves coding and developing new tools and services.
+					</Text>
+				</Container>
+			</Box>
 		</>
 	)
 }
