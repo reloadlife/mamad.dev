@@ -6,6 +6,8 @@ import {
 	ActionIcon,
 	Text,
 } from '@mantine/core'
+import { useSpotlight } from '@mantine/spotlight'
+import { useTranslation } from 'react-i18next'
 import MainHeader from 'src/components/MainHeader/MainHeader'
 import {
 	BrandTwitter,
@@ -27,6 +29,9 @@ type MainLayoutProps = {
 
 const MainLayout = ({ children }: MainLayoutProps) => {
 	const theme = useMantineTheme()
+	const { t, i18n } = useTranslation()
+
+	const spotlight = useSpotlight()
 
 	return (
 		<AppShell
@@ -40,7 +45,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 			}}
 			footer={
 				<Footer
-					height={200}
+					height={250}
 					p="md"
 					sx={{
 						minHeight: 70,
@@ -210,12 +215,67 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 						and a little bit of{' '}
 						<a href="https://mantine.dev/" rel="noindex, nofollow">
 							mantine.dev
-						</a>
+						</a>{' '}
 						also some{' '}
 						<a href="https://mui.com/" rel="noindex, nofollow">
 							mui.com
 						</a>
 					</Text>
+
+					<Text
+						sx={{
+							textAlign: 'center',
+							fontSize: 'x-small',
+							paddingTop: 8,
+							cursor: 'pointer',
+						}}
+						onClick={spotlight.openSpotlight}
+					>
+						Use <code>⌘ + K / Ctrl + K</code> or <code>/</code> to
+						open the shortcuts panel.
+					</Text>
+
+					<Text
+						sx={{
+							textAlign: 'center',
+							fontSize: 'x-small',
+							paddingTop: 8,
+						}}
+					>
+						{t('current_language')} {t('language')}
+					</Text>
+
+					<Text
+						sx={{
+							textAlign: 'center',
+							fontSize: 'x-small',
+							paddingTop: 8,
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+							gap: '5px',
+						}}
+					>
+						<Text
+							sx={{
+								fontSize: 'x-small',
+								cursor: 'pointer',
+							}}
+							onClick={() => i18n.changeLanguage('fa')}
+						>
+							{t('translate.persian')}
+						</Text>
+						<Text
+							sx={{
+								fontSize: 'x-small',
+								cursor: 'pointer',
+							}}
+							onClick={() => i18n.changeLanguage('en')}
+						>
+							{t('translate.english')}
+						</Text>
+					</Text>
+
 					<Text
 						sx={{
 							textAlign: 'center',
@@ -224,6 +284,17 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 						}}
 					>
 						If you read all that, I love you &lt;3
+					</Text>
+
+					<Text
+						sx={{
+							textAlign: 'center',
+							fontSize: 'x-small',
+							paddingTop: 8,
+						}}
+					>
+						And yes, i did develop this web pages to unlock some
+						next level prograrmming skills
 					</Text>
 				</Footer>
 			}

@@ -9,20 +9,23 @@
 
 import { Set, Router, Route } from '@redwoodjs/router'
 import PostsLayout from 'src/layouts/PostsLayout'
+import MainLayout from './layouts/MainLayout/MainLayout'
 
 const Routes = () => {
 	return (
 		<Router>
-			<Route path="/" page={HomePage} name="home" />
-			<Route path="/login" page={LoginPage} name="login" />
-			<Route path="/signup" page={SignupPage} name="signup" />
-			<Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
-			<Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
-			<Set wrap={PostsLayout}>
-				<Route path="/posts/new" page={PostNewPostPage} name="newPost" />
-				<Route path="/posts/{id:Int}/edit" page={PostEditPostPage} name="editPost" />
-				<Route path="/posts/{id:Int}" page={PostPostPage} name="post" />
-				<Route path="/posts" page={PostPostsPage} name="posts" />
+			<Set wrap={MainLayout}>
+				<Route path="/" page={HomePage} name="home" />
+				<Route path="/login" page={LoginPage} name="login" />
+				<Route path="/signup" page={SignupPage} name="signup" />
+				<Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
+				<Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
+				<Set wrap={PostsLayout}>
+					<Route path="/posts/new" page={PostNewPostPage} name="newPost" />
+					<Route path="/posts/{id:Int}/edit" page={PostEditPostPage} name="editPost" />
+					<Route path="/posts/{id:Int}" page={PostPostPage} name="post" />
+					<Route path="/posts" page={PostPostsPage} name="posts" />
+				</Set>
 			</Set>
 			<Route notfound page={NotFoundPage} />
 		</Router>

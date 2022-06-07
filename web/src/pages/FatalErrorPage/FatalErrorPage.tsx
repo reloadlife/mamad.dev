@@ -7,15 +7,7 @@
 // still render a generic error page, but your users will prefer something a bit more
 // thoughtful. =)
 import MainLayout from 'src/layouts/MainLayout/MainLayout'
-import { routes } from '@redwoodjs/router'
-import {
-	Title,
-	Text,
-	Button,
-	Container,
-	Group,
-	useMantineTheme,
-} from '@mantine/core'
+import { Title, Text, Container, useMantineTheme } from '@mantine/core'
 
 // Ensures that production builds do not include the error page
 let RedwoodDevFatalErrorPage = undefined
