@@ -6,6 +6,16 @@
 // avoid the possibility that it will cause its own error. If it does, Redwood will
 // still render a generic error page, but your users will prefer something a bit more
 // thoughtful. =)
+import MainLayout from 'src/layouts/MainLayout/MainLayout'
+import { routes } from '@redwoodjs/router'
+import {
+	Title,
+	Text,
+	Button,
+	Container,
+	Group,
+	useMantineTheme,
+} from '@mantine/core'
 
 // Ensures that production builds do not include the error page
 let RedwoodDevFatalErrorPage = undefined
@@ -14,48 +24,68 @@ if (process.env.NODE_ENV === 'development') {
 		require('@redwoodjs/web/dist/components/DevFatalErrorPage').DevFatalErrorPage
 }
 
-export default RedwoodDevFatalErrorPage ||
-	(() => (
-		<main>
-			<style
-				dangerouslySetInnerHTML={{
-					__html: `
-							html, body {
-								margin: 0;
-							}
-							html * {
-								box-sizing: border-box;
-							}
-							main {
-								display: flex;
-								align-items: center;
-								font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-								text-align: center;
-								background-color: #E2E8F0;
-								height: 100vh;
-							}
-							section {
-								background-color: white;
-								border-radius: 0.25rem;
-								width: 32rem;
-								padding: 1rem;
-								margin: 0 auto;
-								box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-							}
-							h1 {
-								font-size: 2rem;
-								margin: 0;
-								font-weight: 500;
-								line-height: 1;
-								color: #2D3748;
-							}
-						`,
+const FatalErrorPage = () => {
+	const theme = useMantineTheme()
+
+	return (
+		<MainLayout>
+			<Container
+				sx={{
+					paddingTop: 80,
+					paddingBottom: 80,
 				}}
-			/>
-			<section>
-				<h1>
-					<span>Something went wrong</span>
-				</h1>
-			</section>
-		</main>
-	))
+			>
+				<div
+					style={{
+						textAlign: 'center',
+						fontWeight: 900,
+						fontSize: 220,
+						lineHeight: 1,
+						marginBottom: theme.spacing.xl * 1.5,
+						color:
+							theme.colorScheme === 'dark'
+								? theme.colors.dark[4]
+								: theme.colors.gray[2],
+
+						[theme.fn.smallerThan('sm')]: {
+							fontSize: 120,
+						},
+					}}
+				>
+					500
+				</div>
+				<Title
+					sx={{
+						fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+						textAlign: 'center',
+						fontWeight: 900,
+						fontSize: 38,
+
+						[theme.fn.smallerThan('sm')]: {
+							fontSize: 32,
+						},
+					}}
+				>
+					Something Went Wrong !
+				</Title>
+				<Text
+					color="dimmed"
+					size="lg"
+					align="center"
+					sx={{
+						maxWidth: 500,
+						margin: 'auto',
+						marginTop: theme.spacing.xl,
+						marginBottom: theme.spacing.xl * 1.5,
+					}}
+				>
+					Unfortunately, something happened to our server and we were
+					unable to generate the page you&#39;ve requested. Try again
+					in a few minutes, or contact us if the problem persists. :)
+				</Text>
+			</Container>
+		</MainLayout>
+	)
+}
+
+export default RedwoodDevFatalErrorPage || FatalErrorPage

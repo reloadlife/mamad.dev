@@ -262,7 +262,16 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 				/>
 			}
 		>
-			{children}
+			<main
+				style={{
+					minHeight: '75vh',
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}
+			>
+				<div style={{ display: 'block' }}>{children}</div>
+			</main>
 		</AppShell>
 	)
 }

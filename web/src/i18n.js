@@ -34,7 +34,6 @@ export default HomePage
 */
 
 i18n
-	// learn more: https://github.com/i18next/i18next-browser-languageDetector
 	.use(LanguageDetector)
 	.use(initReactI18next)
 	.init({
