@@ -1,3 +1,26 @@
+:root {
+	--links-color: rgb(83, 9, 255);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-	margin: 0
+	padding: 0;
+    margin: 0;
+	font-family: 'Roboto', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+	text-decoration: none;
+	color: var(--links-color)
+}
+
+.sans-font {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.cursive-font {
+    font-family: 'Supermercado One', cursive;
 }

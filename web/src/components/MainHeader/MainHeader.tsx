@@ -1,10 +1,8 @@
-import { useBooleanToggle } from '@mantine/hooks'
 import {
 	createStyles,
 	Header,
 	Group,
 	Container,
-	Burger,
 	useMantineTheme,
 } from '@mantine/core'
 
@@ -17,31 +15,6 @@ const useStyles = createStyles((theme) => ({
 
 		[theme.fn.smallerThan('sm')]: {
 			justifyContent: 'flex-start',
-		},
-	},
-
-	links: {
-		width: 260,
-
-		[theme.fn.smallerThan('sm')]: {
-			display: 'none',
-		},
-	},
-
-	social: {
-		width: 260,
-
-		[theme.fn.smallerThan('sm')]: {
-			width: 'auto',
-			marginLeft: 'auto',
-		},
-	},
-
-	burger: {
-		marginRight: theme.spacing.md,
-
-		[theme.fn.largerThan('sm')]: {
-			display: 'none',
 		},
 	},
 
@@ -80,20 +53,19 @@ const useStyles = createStyles((theme) => ({
 }))
 
 interface MainHeaderProps {
-	links: { link: string; label: string }[]
+	links: { link: string; label: string | React.ReactNode }[]
 }
 
 const MainHeader = ({ links }: MainHeaderProps) => {
-	const [opened, toggleOpened] = useBooleanToggle(false)
 	const [active, setActive] = React.useState(links[0].link)
 	const { classes, cx } = useStyles()
 	const theme = useMantineTheme()
 
 	const items = links.map((link) => (
 		<a
-			key={link.label}
+			key={link.link}
 			href={link.link}
-			className={cx(classes.link, {
+			className={cx('cursive-font', classes.link, {
 				[classes.linkActive]: active === link.link,
 			})}
 			onClick={(event) => {
@@ -116,15 +88,7 @@ const MainHeader = ({ links }: MainHeaderProps) => {
 			}}
 		>
 			<Container className={classes.inner}>
-				<Burger
-					opened={opened}
-					onClick={() => toggleOpened()}
-					size="sm"
-					className={classes.burger}
-				/>
-				<Group className={classes.links} spacing={5}>
-					{items}
-				</Group>
+				<Group spacing={5}>{items}</Group>
 			</Container>
 		</Header>
 	)
