@@ -6,9 +6,9 @@ import HomePage from './HomePage'
 //   https://redwoodjs.com/docs/testing#testing-pages-layouts
 
 describe('HomePage', () => {
-  it('renders successfully', () => {
-    expect(() => {
-      render(<HomePage />)
-    }).not.toThrow()
-  })
+	it('renders successfully', () => {
+		expect(() => {
+			render(<HomePage />)
+		}).not.toThrow()
+	})
 })

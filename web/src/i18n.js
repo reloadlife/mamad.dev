@@ -34,19 +34,19 @@ export default HomePage
 */
 
 i18n
-  // learn more: https://github.com/i18next/i18next-browser-languageDetector
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    interpolation: { escapeValue: false }, // React already does escaping
-    fallbackLng: 'en',
-    resources: {
-      en: {
-        translation: en,
-      },
-      fr: {
-        translation: fr,
-      },
-    },
-  })
+	// learn more: https://github.com/i18next/i18next-browser-languageDetector
+	.use(LanguageDetector)
+	.use(initReactI18next)
+	.init({
+		interpolation: { escapeValue: false }, // React already does escaping
+		fallbackLng: 'en',
+		resources: {
+			en: {
+				translation: en,
+			},
+			fr: {
+				translation: fr,
+			},
+		},
+	})
 export default i18n

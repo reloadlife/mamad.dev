@@ -4,18 +4,18 @@ import i18n from 'web/src/i18n'
 
 /** @type { import("@storybook/csf").GlobalTypes } */
 export const globalTypes = {
-  locale: {
-    name: 'Locale',
-    description: 'Internationalization locale',
-    defaultValue: 'en',
-    toolbar: {
-      icon: 'globe',
-      items: [
-        { value: 'en', right: '🇺🇸', title: 'English' },
-        { value: 'fr', right: '🇫🇷', title: 'Français' },
-      ],
-    },
-  },
+	locale: {
+		name: 'Locale',
+		description: 'Internationalization locale',
+		defaultValue: 'en',
+		toolbar: {
+			icon: 'globe',
+			items: [
+				{ value: 'en', right: '🇺🇸', title: 'English' },
+				{ value: 'fr', right: '🇫🇷', title: 'Français' },
+			],
+		},
+	},
 }
 
 /**
@@ -29,16 +29,16 @@ export const globalTypes = {
  * @returns a story wrapped in an I18nextProvider
  */
 const withI18n = (StoryFn, context) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  React.useEffect(() => {
-    i18n.changeLanguage(context.globals.locale)
-  }, [context.globals.locale])
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	React.useEffect(() => {
+		i18n.changeLanguage(context.globals.locale)
+	}, [context.globals.locale])
 
-  return (
-    <I18nextProvider i18n={i18n}>
-      <StoryFn />
-    </I18nextProvider>
-  )
+	return (
+		<I18nextProvider i18n={i18n}>
+			<StoryFn />
+		</I18nextProvider>
+	)
 }
 
 export const decorators = [withI18n]

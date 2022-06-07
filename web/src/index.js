@@ -10,7 +10,7 @@ import App from './App'
 const rootElement = document.getElementById('redwood-app')
 
 if (rootElement.children?.length > 0) {
-  ReactDOM.hydrate(<App />, rootElement)
+	ReactDOM.hydrate(<App />, rootElement)
 } else {
-  ReactDOM.render(<App />, rootElement)
+	ReactDOM.render(<App />, rootElement)
 }

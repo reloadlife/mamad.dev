@@ -1,16 +1,24 @@
 {
-  "editor.tabSize": 4,
-  "files.trimTrailingWhitespace": true,
-  "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
-  "[prisma]": {
-    "editor.formatOnSave": true
-  },
-  "editor.tabCompletion": "on",
-"editor.detectIndentation": false,
-"indentRainbow.includedLanguages": [
+	"editor.tabSize": 4,
+	"files.trimTrailingWhitespace": true,
+	"editor.formatOnSave": false,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"[prisma]": {
+		"editor.formatOnSave": true
+	},
+	"editor.tabCompletion": "on",
+	"editor.detectIndentation": false,
+	"indentRainbow.includedLanguages": [
 
-]
+	],
+	"jest.jestCommandLine": "yarn rw test",
+	"javascript.format.insertSpaceBeforeAndAfterBinaryOperators": false,
+	"javascript.format.insertSpaceAfterSemicolonInForStatements": false,
+	"javascript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": false,
+	"javascript.format.insertSpaceAfterKeywordsInControlFlowStatements": false,
+	"javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+	"javascript.format.insertSpaceAfterCommaDelimiter": false,
+	"javascript.format.enable": false
 }
