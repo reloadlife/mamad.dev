@@ -1,7 +1,7 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
-import fr from './locales/fr.json'
+import fa from './locales/fa.json'
 import en from './locales/en.json'
 
 // This is a simple i18n configuration with English and French translations.
@@ -44,8 +44,8 @@ i18n
 			en: {
 				translation: en,
 			},
-			fr: {
-				translation: fr,
+			fa: {
+				translation: fa,
 			},
 		},
 	})

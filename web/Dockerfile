@@ -9,7 +9,7 @@ COPY package.json .
 COPY redwood.toml .
 COPY yarn.lock .
 
-RUN yarn install --frozen-lockfile
+RUN yarn install
 RUN yarn rw build web
 RUN rm -rf ./web/src
 
