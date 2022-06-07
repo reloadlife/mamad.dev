@@ -43,7 +43,8 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-i18next": "^11.17.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "tabler-icons-react": "^1.48.1"
   },
   "devDependencies": {
     "@storybook/addons": "^6.5.7",
