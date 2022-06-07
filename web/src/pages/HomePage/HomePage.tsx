@@ -62,7 +62,6 @@ const HomePage = () => {
 		'Home | Mohammad Mahdi Afshar | Software Engineer | محمد مهدی افشار'
 
 	const { classes, cx } = useStyles()
-	const theme = useMantineTheme()
 
 	return (
 		<>
