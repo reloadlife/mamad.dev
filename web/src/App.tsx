@@ -13,7 +13,11 @@ import './scaffold.css'
 import './index.css'
 import './i18n'
 
-import { MantineProvider } from '@mantine/core'
+import {
+	ColorScheme,
+	ColorSchemeProvider,
+	MantineProvider,
+} from '@mantine/core'
 import {
 	Book,
 	BrandGithub,
@@ -31,6 +35,8 @@ import {
 } from 'tabler-icons-react'
 
 import { routes, navigate } from '@redwoodjs/router'
+import { useHotkeys, useLocalStorage } from '@mantine/hooks'
+import { useTranslation } from 'react-i18next'
 
 const actions: SpotlightAction[] = [
 	{
@@ -170,30 +176,65 @@ const actions: SpotlightAction[] = [
 	},
 ]
 
-const App = () => (
-	<FatalErrorBoundary page={FatalErrorPage}>
-		<RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
-			<AuthProvider type="dbAuth">
-				<RedwoodApolloProvider>
-					<MantineProvider>
-						<NotificationsProvider>
-							<ModalsProvider>
-								<SpotlightProvider
-									actions={actions}
-									highlightQuery
-									transitionDuration={150}
-									transition="slide-down"
-									shortcut={['mod + K', '/']}
-								>
-									<Routes />
-								</SpotlightProvider>
-							</ModalsProvider>
-						</NotificationsProvider>
-					</MantineProvider>
-				</RedwoodApolloProvider>
-			</AuthProvider>
-		</RedwoodProvider>
-	</FatalErrorBoundary>
-)
+const App = () => {
+	const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+		key: 'color-scheme',
+		defaultValue: 'light',
+		getInitialValueInEffect: true,
+	})
+
+	const toggleColorScheme = (value?: ColorScheme) =>
+		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
+
+	useHotkeys([['mod + J', () => toggleColorScheme()]])
+
+	const { i18n } = useTranslation()
+
+	useHotkeys([
+		[
+			'mod + L',
+			() => {
+				i18n.language === 'en'
+					? i18n.changeLanguage('fa')
+					: i18n.changeLanguage('en')
+			},
+		],
+	])
+
+	return (
+		<FatalErrorBoundary page={FatalErrorPage}>
+			<RedwoodProvider titleTemplate="%PageTitle | %AppTitle">
+				<AuthProvider type="dbAuth">
+					<RedwoodApolloProvider>
+						<MantineProvider
+							theme={{ colorScheme }}
+							withGlobalStyles
+							withNormalizeCSS
+						>
+							<ColorSchemeProvider
+								colorScheme={colorScheme}
+								toggleColorScheme={toggleColorScheme}
+							>
+								<NotificationsProvider>
+									<ModalsProvider>
+										<SpotlightProvider
+											actions={actions}
+											highlightQuery
+											transitionDuration={150}
+											transition="slide-down"
+											shortcut={['mod + K', '/']}
+										>
+											<Routes />
+										</SpotlightProvider>
+									</ModalsProvider>
+								</NotificationsProvider>
+							</ColorSchemeProvider>
+						</MantineProvider>
+					</RedwoodApolloProvider>
+				</AuthProvider>
+			</RedwoodProvider>
+		</FatalErrorBoundary>
+	)
+}
 
 export default App

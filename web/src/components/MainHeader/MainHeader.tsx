@@ -4,7 +4,10 @@ import {
 	Group,
 	Container,
 	useMantineTheme,
+	useMantineColorScheme,
+	ActionIcon,
 } from '@mantine/core'
+import { Sun, MoonStars } from 'tabler-icons-react'
 
 const useStyles = createStyles((theme) => ({
 	inner: {
@@ -61,6 +64,8 @@ const MainHeader = ({ links }: MainHeaderProps) => {
 	const { classes, cx } = useStyles()
 	const theme = useMantineTheme()
 
+	const { colorScheme, toggleColorScheme } = useMantineColorScheme()
+
 	const items = links.map((link) => (
 		<a
 			key={link.link}
@@ -89,6 +94,27 @@ const MainHeader = ({ links }: MainHeaderProps) => {
 		>
 			<Container className={classes.inner}>
 				<Group spacing={5}>{items}</Group>
+
+				<ActionIcon
+					onClick={() => toggleColorScheme()}
+					size="lg"
+					sx={(theme) => ({
+						backgroundColor:
+							theme.colorScheme === 'dark'
+								? theme.colors.dark[6]
+								: theme.colors.gray[0],
+						color:
+							theme.colorScheme === 'dark'
+								? theme.colors.yellow[4]
+								: theme.colors.blue[6],
+					})}
+				>
+					{colorScheme === 'dark' ? (
+						<Sun size={18} />
+					) : (
+						<MoonStars size={18} />
+					)}
+				</ActionIcon>
 			</Container>
 		</Header>
 	)

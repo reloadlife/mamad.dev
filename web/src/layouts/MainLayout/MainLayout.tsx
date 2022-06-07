@@ -5,6 +5,7 @@ import {
 	Group,
 	ActionIcon,
 	Text,
+	Kbd,
 } from '@mantine/core'
 import { useSpotlight } from '@mantine/spotlight'
 import { useTranslation } from 'react-i18next'
@@ -45,7 +46,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 			}}
 			footer={
 				<Footer
-					height={250}
+					height={300}
 					p="md"
 					sx={{
 						minHeight: 70,
@@ -231,8 +232,30 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 						}}
 						onClick={spotlight.openSpotlight}
 					>
-						Use <code>⌘ + K / Ctrl + K</code> or <code>/</code> to
-						open the shortcuts panel.
+						Use <Kbd>⌘ / Ctrl</Kbd> + <Kbd>K</Kbd>
+						or <Kbd>/</Kbd> to open the shortcuts panel.
+					</Text>
+
+					<Text
+						sx={{
+							textAlign: 'center',
+							fontSize: 'x-small',
+							paddingTop: 8,
+						}}
+					>
+						Use <Kbd>⌘ / Ctrl</Kbd> + <Kbd>J</Kbd>
+						to Switch between Light and Dark theme.
+					</Text>
+
+					<Text
+						sx={{
+							textAlign: 'center',
+							fontSize: 'x-small',
+							paddingTop: 8,
+						}}
+					>
+						Use <Kbd>⌘ / Ctrl</Kbd> + <Kbd>L</Kbd>
+						to Switch between Persian and English Locale.
 					</Text>
 
 					<Text

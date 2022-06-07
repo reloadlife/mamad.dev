@@ -165,16 +165,7 @@ const HomePage = () => {
 					</h1>
 
 					<Text className={classes.description} color="dimmed">
-						I am a{' '}
-						<Text<'span'>
-							component="span"
-							variant="gradient"
-							gradient={{ from: 'red', to: 'cyan' }}
-							inherit
-						>
-							English Translation Student
-						</Text>{' '}
-						who loves coding and developing new tools and services.
+						[[TO BE WRITTEN]]
 					</Text>
 				</Container>
 			</Box>
