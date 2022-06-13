@@ -1,15 +1,15 @@
-import '../styles/globals.scss';
-import type { AppProps } from 'next/app';
+import '../styles/globals.scss'
+import type { AppProps } from 'next/app'
 
-import { NotificationsProvider } from '@mantine/notifications';
-import { ModalsProvider } from '@mantine/modals';
-import { SpotlightAction, SpotlightProvider } from '@mantine/spotlight';
+import { NotificationsProvider } from '@mantine/notifications'
+import { ModalsProvider } from '@mantine/modals'
+import { SpotlightAction, SpotlightProvider } from '@mantine/spotlight'
 
 import {
 	ColorScheme,
 	ColorSchemeProvider,
 	MantineProvider,
-} from '@mantine/core';
+} from '@mantine/core'
 import {
 	Book,
 	BrandGithub,
@@ -24,24 +24,24 @@ import {
 	Home,
 	Mail,
 	Phone,
-} from 'tabler-icons-react';
+} from 'tabler-icons-react'
 
-import { useHotkeys, useLocalStorage } from '@mantine/hooks';
-import { useRouter } from 'next/router';
-import MainLayout from '../layouts/MainLayout';
+import { useHotkeys, useLocalStorage } from '@mantine/hooks'
+import { useRouter } from 'next/router'
+import MainLayout from '../layouts/MainLayout'
 // import { useTranslation } from 'react-i18next'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function Layout({ children }: any) {
 	const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
 		key: 'color-scheme',
 		defaultValue: 'light',
 		getInitialValueInEffect: true,
-	});
+	})
 
 	const toggleColorScheme = (value?: ColorScheme) =>
-		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
 
-	useHotkeys([['mod + J', () => toggleColorScheme()]]);
+	useHotkeys([['mod + J', () => toggleColorScheme()]])
 
 	// const { i18n } = useTranslation()
 
@@ -56,7 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	// 	],
 	// ])
 
-	const router = useRouter();
+	const router = useRouter()
 
 	const actions: SpotlightAction[] = [
 		{
@@ -201,7 +201,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			id: 'resume-download',
 			group: 'cmd',
 		},
-	];
+	]
 
 	return (
 		<MantineProvider
@@ -222,15 +222,21 @@ function MyApp({ Component, pageProps }: AppProps) {
 							transition="slide-down"
 							shortcut={['mod + K', '/']}
 						>
-							<MainLayout>
-								<Component {...pageProps} />
-							</MainLayout>
+							<MainLayout>{children}</MainLayout>
 						</SpotlightProvider>
 					</ModalsProvider>
 				</NotificationsProvider>
 			</ColorSchemeProvider>
 		</MantineProvider>
-	);
+	)
 }
 
-export default MyApp;
+function MyApp({ Component, pageProps }: AppProps) {
+	return (
+		<Layout>
+			<Component {...pageProps} />
+		</Layout>
+	)
+}
+
+export default MyApp
