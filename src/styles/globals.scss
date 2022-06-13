@@ -1,51 +1,55 @@
+:root {
+	--links-color: rgb(104, 0, 40);
+}
+
+
+* {
+	box-sizing: border-box;
+}
+
 html,
 body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background: rgb(7, 0, 21);
-    color: #fff;
+	padding: 0;
+	margin: 0;
+	font-family: 'Roboto', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	background: rgb(7, 0, 21);
+	color: #fff;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
+	text-decoration: none;
+	color: var(--links-color)
 }
 
-* {
-    box-sizing: border-box;
+.sans-font {
+	font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
-.title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-align: left;
+.cursive-font {
+	font-family: 'Supermercado One', cursive;
 }
 
-.font {
-    font-family: 'Yanone Kaffeesatz', sans-serif;
+.animated {
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	transform-origin: bottom;
 }
 
-.sfont {
-    font-family: 'Supermercado One', cursive;
+.bounce {
+	animation-name: bounce;
+	animation-timing-function: linear;
 }
 
-.nav {
-    list-style-type: none;
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    gap: 2rem;
-    background: rgb(21, 0, 10);
-    color: #fff;
-}
+@keyframes bounce {
+	0% {
+		transform: translateY(0);
+	}
 
-.test {
-    background: rgba(37, 13, 72, 0.727);
-    color: #321b76a1;
-}
+	50% {
+		transform: translateY(-20px);
+	}
 
-// font-family: 'Roboto', sans-serif;
-// font-family: 'Supermercado One', cursive;
-// font-family: 'Yanone Kaffeesatz', sans-serif;
+	100% {
+		transform: translateY(0);
+	}
+}
