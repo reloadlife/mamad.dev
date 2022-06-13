@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
-import {useRouter} from 'next/router'
-import { Box } from '@mantine/core'
+import { useRouter } from 'next/router'
 import {
+	Box,
 	Title,
 	Text,
 	Button,
@@ -74,12 +74,10 @@ const Error404Page: NextPage = () => {
 					component="a"
 					variant="subtle"
 					size="md"
-					onClick={
-						(e) => {
-							e.preventDefault()
-							router.push('/')
-						}
-					}
+					onClick={(e) => {
+						e.preventDefault()
+						router.push('/')
+					}}
 					href={'/'}
 				>
 					Take me back to home page
