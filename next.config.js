@@ -10,7 +10,7 @@ module.exports = withPWA({
     compress: true,
     poweredByHeader: false,
     generateBuildId: async() => {
-        return 'hello-world-ii';
+        return 'mamad-dev.1';
     },
     trailingSlash: true,
     autoPrerender: true,

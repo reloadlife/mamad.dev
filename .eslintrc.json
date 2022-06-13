@@ -21,7 +21,6 @@
 		"ecmaVersion": 2018,
 		"sourceType": "module"
 	},
-	"plugins": ["@typescript-eslint"],
 	"rules": {
 		"prettier/prettier": "error",
 		"no-console": "off",
@@ -35,8 +34,8 @@
 				"tsx": "never"
 			}
 		],
-		"no-unused-vars": "off",
-		"camelcase": "off",
+		"no-unused-vars": "error",
+		"camelcase": "error",
 		"eqeqeq": "off",
 		"no-undef": "off",
 		"@next/next/no-page-custom-font": "off"
