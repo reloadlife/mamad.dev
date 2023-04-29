@@ -11,13 +11,12 @@ import (
 func Router(h *gin.Engine) {
 	r := h.Group("/api")
 	
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
-	
-	r.POST("/login", controllers.Login)
+	{
+		// public
+		r.GET("/ping", controllers.Ping)
+		r.GET("/main", controllers.GetPublicDataController)
+		r.POST("/login", controllers.Login)
+	}
 	
 	{
 		// private

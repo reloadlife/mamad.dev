@@ -57,6 +57,12 @@ services:
       - mysql
     networks:
       - mamad-net
+    healthcheck:
+      test: curl -f http://127.0.0.1/ping
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55
     ports:
       - "80:80"
       - "443:443"
