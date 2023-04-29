@@ -7,6 +7,7 @@ import (
 
 var (
 	Entities = []beeorm.Entity{
+		&models.User{},
 		&models.VisitEntity{},
 	}
 )
