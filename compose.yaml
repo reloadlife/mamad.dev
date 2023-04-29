@@ -2,20 +2,36 @@ networks:
   mamad-net:
     driver: "bridge"
 
+secrets:
+  mysql_root_password:
+    name: mysql_root_password
+    file: ./mysql_root_password.txt
+
 services:
   mysql:
     image: mysql:8.0
-
     restart: always
-    volumes:
-      - ./mysql/:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: app
-      MYSQL_PASSWORD: app
-      MYSQL_DATABASE: app
-      MYSQL_USER: app
+      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
+      MYSQL_DATABASE: $$MYSQL_DATABASE
+      MYSQL_USER: $$MYSQL_USER
+      MYSQL_PASSWORD: $$MYSQL_PASSWORD
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55
+    networks:
+      - mamad-net
+    volumes:
+      - ./mysql/:/var/lib/mysql
+
+  redis:
+    restart: always
+    image: 'redis:6.2-alpine'
+    healthcheck:
+      test: redis-cli --raw incr ping
       start_period: 5s
       interval: 5s
       timeout: 5s
@@ -25,11 +41,14 @@ services:
 
   app:
     restart: always
+    image: ghcr.io/reloadlife/mamad.dev:go
     build:
       context: .
       dockerfile: Dockerfile
     depends_on:
       mysql:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     links:
       - mysql
@@ -38,6 +57,6 @@ services:
     volumes:
       - ./config.yaml:/config.yaml
     ports:
-      - "8080:8080"
-      - "8443:8443"
+      - "80:80"
+      - "443:443"
     tty: true

@@ -3,3 +3,6 @@
 main
 main.exe
 main.bin
+
+.env
+mysql_root_password.txt
