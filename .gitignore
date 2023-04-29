@@ -6,3 +6,4 @@ main.bin
 
 .env
 mysql_root_password.txt
+config.yaml

@@ -70,9 +70,31 @@ var (
 )
 
 func init() {
-	file, err := os.ReadFile("config.yaml")
-	if err != nil {
-		panic("Failed to load config: " + err.Error())
+	configString, hasConfString := os.LookupEnv("CONFIG")
+	
+	if hasConfString {
+		err := yaml.Unmarshal([]byte(configString), &Config)
+		if err != nil {
+			panic("Failed to load config: " + err.Error())
+		}
+		return
+	}
+	
+	config, hasConf := os.LookupEnv("CONFIG_FILE")
+	var file []byte
+	var err error
+	if !hasConf {
+		file, err = os.ReadFile("config.yaml")
+		if err != nil {
+			panic("Failed to load config: " + err.Error())
+		}
+	}
+	
+	if hasConf {
+		file, err = os.ReadFile(config)
+		if err != nil {
+			panic("Failed to load config: " + err.Error())
+		}
 	}
 	
 	err = yaml.Unmarshal(file, &Config)

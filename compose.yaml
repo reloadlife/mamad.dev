@@ -6,6 +6,9 @@ secrets:
   mysql_root_password:
     name: mysql_root_password
     file: ./mysql_root_password.txt
+  config_file:
+    name: config_file
+    file: ./config.yaml
 
 services:
   mysql:
@@ -54,9 +57,9 @@ services:
       - mysql
     networks:
       - mamad-net
-    volumes:
-      - ./config.yaml:/config.yaml
     ports:
       - "80:80"
       - "443:443"
+    environment:
+      CONFIG_FILE: /run/secrets/config_file
     tty: true
