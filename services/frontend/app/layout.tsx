@@ -1,18 +1,15 @@
 import '@/styles/globals.css';
 import React from 'react';
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+
+export default function RootLayout({ children }: { children: React.ReactNode; }) {
   return (
     <html>
-      <head>
-        <title>mamad</title>
-      </head>
-      <body className="overflow-y-scroll bg-zinc-900">
-      {children}
-      </body>
+    <head>
+      <title>mamad</title>
+    </head>
+    <body>
+    {children}
+    </body>
     </html>
   );
 }

@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo --show-all",
+    "dev": "next dev --turbo --show-all --port 3000",
     "build": "next build",
     "start": "next start --port 3000",
     "lint": "next lint",

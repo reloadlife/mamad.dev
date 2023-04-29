@@ -72,6 +72,9 @@ func ReverseProxy(c *gin.Context) {
 	}
 	
 	proxy.ServeHTTP(c.Writer, c.Request)
+	proxy.ErrorHandler = func(writer http.ResponseWriter, request *http.Request, e error) {
+		log.Errorf("Error while proxying: %s", e.Error())
+	}
 }
 
 func GetNextFS() embed.FS {
