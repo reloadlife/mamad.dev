@@ -5,6 +5,7 @@ import (
 	`net/http`
 	
 	`github.com/gin-gonic/gin`
+	`github.com/reloadlife/mamad.dev/v2/services/backend/middlewares`
 	`github.com/reloadlife/mamad.dev/v2/services/config`
 	`github.com/reloadlife/mamad.dev/v2/services/frontend`
 	`github.com/sarulabs/di`
@@ -40,12 +41,8 @@ func SetupBackendService() *di.Def {
 			}
 			
 			handler := gin.New()
-			handler.Use(gin.Recovery())
-			handler.Use(gin.Logger())
-			
-			handler.Use(func(c *gin.Context) {
-			
-			})
+			handler.Use(gin.Recovery(), gin.Logger())
+			handler.Use(middlewares.Middlewares...)
 			
 			Router(handler)
 			
@@ -57,7 +54,12 @@ func SetupBackendService() *di.Def {
 				handler.StaticFS("/", http.FS(distFS))
 			}
 			
-			handler.NoRoute(frontend.ReverseProxy)
+			handler.NoRoute(func(c *gin.Context) {
+				c.String(http.StatusNotFound, "Not Found")
+			})
+			if config.Config.Env.Frontend == "development" {
+				handler.NoRoute(frontend.ReverseProxy)
+			}
 			
 			go run(handler)
 			if config.Config.Webserver.EnableSSL {

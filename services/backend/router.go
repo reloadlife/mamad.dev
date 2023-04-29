@@ -9,11 +9,11 @@ import (
 )
 
 func Router(h *gin.Engine) {
+	h.GET("/ping", controllers.Ping)
 	r := h.Group("/api")
 	
 	{
 		// public
-		r.GET("/ping", controllers.Ping)
 		r.GET("/main", controllers.GetPublicDataController)
 		r.POST("/login", controllers.Login)
 	}
@@ -23,9 +23,10 @@ func Router(h *gin.Engine) {
 		p := r.Group("")
 		p.Use(token.JwtAuthMiddleware())
 		p.GET("/me", func(c *gin.Context) {
+			id, _ := c.Get("id")
 			c.JSON(http.StatusOK, gin.H{
 				"message": "me",
-				"id":      c.Get("id"),
+				"id":      id,
 			})
 		})
 	}
