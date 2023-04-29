@@ -2,8 +2,7 @@ name: Build
 
 on:
   push:
-    branches: [ "master" ]
-    tags: [ 'v*.*.*' ]
+    branches: [ "*" ]
 
 env:
   # Use docker.io for Docker Hub if empty
