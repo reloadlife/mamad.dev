@@ -1,0 +1,43 @@
+networks:
+  mamad-net:
+    driver: "bridge"
+
+services:
+  mysql:
+    image: mysql:8.0
+
+    restart: always
+    volumes:
+      - ./mysql/:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: app
+      MYSQL_PASSWORD: app
+      MYSQL_DATABASE: app
+      MYSQL_USER: app
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      start_period: 5s
+      interval: 5s
+      timeout: 5s
+      retries: 55
+    networks:
+      - mamad-net
+
+  app:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      mysql:
+        condition: service_healthy
+    links:
+      - mysql
+    networks:
+      - mamad-net
+    volumes:
+      - ./config.yaml:/config.yaml
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    tty: true
