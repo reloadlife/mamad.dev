@@ -43,6 +43,10 @@ func SetupBackendService() *di.Def {
 			handler.Use(gin.Recovery())
 			handler.Use(gin.Logger())
 			
+			handler.Use(func(c *gin.Context) {
+			
+			})
+			
 			Router(handler)
 			
 			if config.Config.Env.Frontend != "development" {
