@@ -16,9 +16,9 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD_FILE: /run/secrets/mysql_root_password
-      MYSQL_DATABASE: $$MYSQL_DATABASE
-      MYSQL_USER: $$MYSQL_USER
-      MYSQL_PASSWORD: $$MYSQL_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
       start_period: 5s
@@ -44,7 +44,7 @@ services:
 
   app:
     restart: always
-    image: ghcr.io/reloadlife/mamad.dev:go
+    image: ghcr.io/reloadlife/mamad.dev:$VERSION
     build:
       context: .
       dockerfile: Dockerfile
