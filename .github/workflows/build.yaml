@@ -7,17 +7,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
-  SSH_HOST: ${{secrets.SSH_HOST}}
-  SSH_USER: ${{secrets.SSH_USER}}
-  SSH_PORT: ${{secrets.SSH_PORT}}
-  SSH_PATH: ${{secrets.SSH_PATH}}
-
-  MYSQL_ROOT_PASSWORD: ${{secrets.MYSQL_ROOT_PASSWORD}}
-  ENV: ${{secrets.ENV}}
-  CONFIG: ${{secrets.CONFIG}}
-
 
 
 jobs:
@@ -82,11 +71,11 @@ jobs:
       packages: write
       id-token: write
       secrets: read
-      
+
     needs: build
     environment:
       name: DigitalOcean
-      url: http://${{secrets.SSH_HOST}}
+      url: https://stage.mamad.dev
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
@@ -97,7 +86,7 @@ jobs:
           sudo chmod 600 ${{ github.workspace }}/../private.key
         shell: bash
         env:
-          SSH_PRIVATE_KEY: ${{env.SSH_PRIVATE_KEY}}
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
 
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -107,16 +96,16 @@ jobs:
           CMD: |
             cd $SSH_PROJECT_PATH
             echo "$COMPOSE" > compose.yml
-            echo "${{env.MYSQL_ROOT_PASSWORD}}" > mysql_root_password.txt
-            echo "${{env.ENV}}" > .env
-            echo "${{env.CONFIG}}" > config.yaml
+            echo "${{secrets.MYSQL_ROOT_PASSWORD}}" > mysql_root_password.txt
+            echo "${{secrets.ENV}}" > .env
+            echo "${{secrets.CONFIG}}" > config.yaml
             docker compose pull
             docker compose down
             docker compose up -d --remove-orphans
-          SSH_HOST: ${{env.SSH_HOST}}
-          SSH_USER: ${{env.SSH_USER}}
-          SSH_PORT: ${{env.SSH_PORT}}
-          SSH_PROJECT_PATH: ${{env.SSH_PATH}}
+          SSH_HOST: ${{secrets.SSH_HOST}}
+          SSH_USER: ${{secrets.SSH_USER}}
+          SSH_PORT: ${{secrets.SSH_PORT}}
+          SSH_PROJECT_PATH: ${{secrets.SSH_PATH}}
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
         run: |
           COMPOSE=$(cat compose.yaml)
