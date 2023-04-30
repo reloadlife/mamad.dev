@@ -79,23 +79,30 @@ func ExtractTokenID(c *gin.Context) (uint, error) {
 	return 0, nil
 }
 
-func JwtAuthMiddleware() gin.HandlerFunc {
+func JwtAuthMiddleware(MustLogin bool) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		err := Valid(c)
 		if err != nil {
-			c.String(http.StatusUnauthorized, "Unauthorized")
-			c.Abort()
-			return
+			if MustLogin {
+				c.String(http.StatusUnauthorized, "Unauthorized")
+				c.Abort()
+				return
+			}
 		}
 		
 		id, err := ExtractTokenID(c)
 		if err != nil {
-			c.String(http.StatusUnauthorized, "Unauthorized")
-			c.Abort()
-			return
+			if MustLogin {
+				c.String(http.StatusUnauthorized, "Unauthorized")
+				c.Abort()
+				return
+			}
+		}
+		c.Set("user_id", id)
+		if id == 0 {
+			c.Set("user_id", "guest")
 		}
 		
-		c.Set("user_id", id)
 		c.Set("is_logged_in", true)
 		c.Next()
 	}

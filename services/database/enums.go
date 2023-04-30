@@ -7,7 +7,5 @@ type enum struct {
 }
 
 var (
-	enums = []enum{
-	
-	}
+	enums []enum
 )

@@ -21,11 +21,27 @@ func Router(h *gin.Engine) {
 	{
 		// private
 		p := r.Group("")
-		p.Use(token.JwtAuthMiddleware())
+		p.Use(token.JwtAuthMiddleware(true))
 		p.GET("/me", func(c *gin.Context) {
 			id, _ := c.Get("id")
 			c.JSON(http.StatusOK, gin.H{
 				"message": "me",
+				"id":      id,
+			})
+		})
+	}
+	
+	{
+		// private
+		p := r.Group("")
+		p.Use(token.JwtAuthMiddleware(false))
+		p.GET("/help", func(c *gin.Context) {
+			id, ok := c.Get("id")
+			if !ok {
+				id = "guest"
+			}
+			c.JSON(http.StatusOK, gin.H{
+				"message": "hello",
 				"id":      id,
 			})
 		})
