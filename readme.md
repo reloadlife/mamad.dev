@@ -12,8 +12,8 @@ My personal website, written in GoLang and NextJS13.
 - Golang Backend
 - Embedded and ReverseProxy (for serving static files) in one binary
 - [gin](https://github.com/gin-gonic/gin) as my web framework.
-- using both [beeorm](https://beeorm.io/) and [gorm](https://gorm.io/) as my ORMs (just figuring out which one's
-  better).
+- using [gorm](https://gorm.io/) as my ORM. ([beeorm](https://beeorm.io) was also an option but had to remove it because
+  i wanted to learn gorm)
 - NextJS 13 (app directory) With TurboPack (dev) as front-end.
 - Playing around with GitHub Actions, Docker, Heroku, Cloud Providers and ... .
 - Jwt Authentication.
