@@ -50,7 +50,7 @@ jobs:
           SSH_PORT: ${{secrets.SSH_PORT}}
           SSH_PROJECT_PATH: ${{secrets.SSH_PATH}}
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
-        run: |
-          COMPOSE=$(cat compose.yml)
+        run: | 
+          COMPOSE=$(cat compose.yaml)
           ssh -o StrictHostKeyChecking=no -i ${{ github.workspace }}/../private.key $SSH_USER@$SSH_HOST -p $SSH_PORT "$CMD"
         shell: bash
