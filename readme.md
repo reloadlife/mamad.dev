@@ -1,12 +1,22 @@
 # Mohammad Mahdi Afshar
 
-## GoLang
+My personal website, written in GoLang and NextJS13.
 
-- finally i am re-writing [mamad.dev](https://mamad.dev) using golang to gain more experience about web development in
-  golang.
-- i am using [gin](https://github.com/gin-gonic/gin) as my web framework.
-- i am using [beeorm](https://beeorm.io/) as my ORM.
-- Kinda want to try and see if i can use nextJS as my frontend framework. **WIP**
+- Blog
+- Portfolio
+- Resume
+- fun parts
+
+## GoLang and NextJS13
+
+- Golang Backend
+- Embedded and ReverseProxy (for serving static files) in one binary
+- [gin](https://github.com/gin-gonic/gin) as my web framework.
+- using both [beeorm](https://beeorm.io/) and [gorm](https://gorm.io/) as my ORMs (just figuring out which one's
+  better).
+- NextJS 13 (app directory) With TurboPack (dev) as front-end.
+- Playing around with GitHub Actions, Docker, Heroku, Cloud Providers and ... .
+- Jwt Authentication.
 
 ## Documents and Resources
 
