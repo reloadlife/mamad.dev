@@ -15,6 +15,10 @@ COPY . /src
 WORKDIR /src
 COPY go.mod .
 COPY go.sum .
+
+ENV GO111MODULE=on
+ENV GOPROXY=https://goproxy.cn,direct
+
 RUN go mod download
 COPY . .
 
