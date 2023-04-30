@@ -24,6 +24,7 @@ My personal website, written in GoLang and NextJS13.
 
 #### Github Secrets (Actions)
 
+- `SSH_PUBLIC_KEY`: ssh public key to connect to server
 - `SSH_PRIVATE_KEY`: ssh private key to connect to server
 - `SSH_HOST`: server host
 - `SSH_USER`: server user

@@ -29,7 +29,7 @@ jobs:
           sudo chmod 600 ${{ github.workspace }}/../private.key
         shell: bash
         env:
-          SSH_PRIVATE_KEY: ${{secrets.SSH_KEY}}
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
 
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -38,7 +38,7 @@ jobs:
         env:
           CMD: |
             cd $SSH_PROJECT_PATH
-            git pull
+            echo "$COMPOSE" > compose.yml
             echo "${{secrets.MYSQL_ROOT_PASSWORD}}" > mysql_root_password.txt
             echo "${{secrets.ENV}}" > .env
             echo "${{secrets.CONFIG}}" > config.yaml
@@ -51,5 +51,6 @@ jobs:
           SSH_PROJECT_PATH: ${{secrets.SSH_PATH}}
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
         run: |
+          COMPOSE=$(cat compose.yml)
           ssh -o StrictHostKeyChecking=no -i ${{ github.workspace }}/../private.key $SSH_USER@$SSH_HOST -p $SSH_PORT "$CMD"
         shell: bash
