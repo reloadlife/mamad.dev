@@ -1,7 +1,6 @@
 package token
 
 import (
-	`errors`
 	"fmt"
 	`net/http`
 	"os"
@@ -9,8 +8,8 @@ import (
 	"strings"
 	"time"
 	
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt/v5"
 )
 
 func GenerateToken(userId uint) (string, error) {
@@ -19,14 +18,15 @@ func GenerateToken(userId uint) (string, error) {
 		return "", err
 	}
 	
-	claims := jwt.MapClaims{}
-	claims["iss"] = "mamad.dev"
-	claims["iat"] = time.Now().Unix()
-	claims["aud"] = "users"
-	
-	claims["authorized"] = true
-	claims["user_id"] = userId
-	claims["exp"] = time.Now().Add(time.Hour * time.Duration(tokenLifespan)).Unix()
+	claims := jwt.RegisteredClaims{
+		Issuer:    "mamad.dev",
+		Subject:   "user",
+		Audience:  []string{"user"},
+		ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * time.Duration(tokenLifespan))),
+		IssuedAt:  jwt.NewNumericDate(time.Now()),
+		NotBefore: jwt.NewNumericDate(time.Now()),
+		ID:        strconv.Itoa(int(userId)),
+	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	
 	return token.SignedString([]byte(os.Getenv("API_SECRET")))
@@ -57,7 +57,8 @@ func ExtractToken(c *gin.Context) string {
 
 func ExtractTokenID(c *gin.Context) (uint, error) {
 	tokenString := ExtractToken(c)
-	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+	claims := &jwt.RegisteredClaims{}
+	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
 		}
@@ -66,16 +67,10 @@ func ExtractTokenID(c *gin.Context) (uint, error) {
 	if err != nil {
 		return 0, err
 	}
-	claims, ok := token.Claims.(jwt.MapClaims)
-	if !claims.VerifyIssuer("mamad.dev", true) {
-		return 0, errors.New("invalid issuer")
-	}
-	if !claims.VerifyAudience("users", true) {
-		return 0, errors.New("invalid audiance")
-	}
 	
+	claims, ok := token.Claims.(*jwt.RegisteredClaims)
 	if ok && token.Valid {
-		uid, err := strconv.ParseUint(fmt.Sprintf("%.0f", claims["user_id"]), 10, 32)
+		uid, err := strconv.ParseUint(claims.ID, 10, 32)
 		if err != nil {
 			return 0, err
 		}

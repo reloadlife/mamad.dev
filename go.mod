@@ -3,9 +3,9 @@ module github.com/reloadlife/mamad.dev/v2
 go 1.19
 
 require (
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.9.0
 	github.com/go-sql-driver/mysql v1.7.0
+	github.com/golang-jwt/jwt/v5 v5.0.0
 	github.com/latolukasz/beeorm v1.15.16
 	github.com/sarulabs/di v2.0.0+incompatible
 	github.com/sirupsen/logrus v1.9.0
