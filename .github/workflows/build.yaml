@@ -90,17 +90,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Copy files to server
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: compose.yaml
+          remote: ${{secrets.SSH_PATH}}/compose.yaml
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          privateKey: ${{secrets.SSH_PRIVATE_KEY}}
+
       - name: deploy on production
         env:
           CMD: |
-            cd $SSH_PROJECT_PATH
-            echo "$COMPOSE" > compose.yml
-            echo "${{secrets.MYSQL_ROOT_PASSWORD}}" > mysql_root_password.txt
-            echo "${{secrets.ENV}}" > .env
-            echo "${{secrets.CONFIG}}" > config.yaml
-            docker compose pull
-            docker compose down
-            docker compose up -d --remove-orphans
+            cd $SSH_PROJECT_PATH  \
+            && echo "${{secrets.MYSQL_ROOT_PASSWORD}}" > mysql_root_password.txt \
+            && echo "${{secrets.ENV}}" > .env  \
+            && echo "${{secrets.CONFIG}}" > config.yaml  \
+            && docker compose pull  \
+            && docker compose down  \
+            && docker compose up -d --remove-orphans
           SSH_HOST: ${{secrets.SSH_HOST}}
           SSH_USER: ${{secrets.SSH_USER}}
           SSH_PORT: ${{secrets.SSH_PORT}}
