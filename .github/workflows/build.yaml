@@ -99,22 +99,65 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           privateKey: ${{secrets.SSH_PRIVATE_KEY}}
 
+      - name: mysql_root_password
+        env:
+          MYSQL_ROOT_PASSWORD: ${{secrets.MYSQL_ROOT_PASSWORD}}
+        run: |
+          echo "$MYSQL_ROOT_PASSWORD" > ${{ github.workspace }}/../mysql_root_password.txt
+        shell: bash
+
+      - name: Copy files to server mysql_root_password.txt
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ${{ github.workspace }}/../mysql_root_password.txt
+          remote: ${{secrets.SSH_PATH}}/mysql_root_password.txt
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          privateKey: ${{secrets.SSH_PRIVATE_KEY}}
+
+      - name: .env
+        env:
+          ENV: ${{secrets.ENV}}
+        run: |
+          echo "$ENV" > ${{ github.workspace }}/../env
+        shell: bash
+
+      - name: Copy files to server .env
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ${{ github.workspace }}/../env
+          remote: ${{secrets.SSH_PATH}}/.env
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          privateKey: ${{secrets.SSH_PRIVATE_KEY}}
+
+      - name: .config.yaml
+        env:
+          CONFIG: ${{secrets.CONFIG}}
+        run: |
+          echo "CONFIG" > ${{ github.workspace }}/../config.yaml
+        shell: bash
+
+      - name: Copy files to server .config.yaml
+        uses: garygrossgarten/github-action-scp@release
+        with:
+          local: ${{ github.workspace }}/../config.yaml
+          remote: ${{secrets.SSH_PATH}}/config.yaml
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          privateKey: ${{secrets.SSH_PRIVATE_KEY}}
+
       - name: deploy on production
         env:
           CMD: |
-            cd $SSH_PROJECT_PATH  \
-            && echo "${{secrets.MYSQL_ROOT_PASSWORD}}" > mysql_root_password.txt \
-            && echo "${{secrets.ENV}}" > .env  \
-            && echo "${{secrets.CONFIG}}" > config.yaml  \
-            && docker compose pull  \
-            && docker compose down  \
-            && docker compose up -d --remove-orphans
+            docker compose -f ${{secrets.SSH_PATH}}/compose.yaml pull \
+            && docker compose -f ${{secrets.SSH_PATH}}/compose.yaml  down \
+            && docker compose -f ${{secrets.SSH_PATH}}/compose.yaml  up -d --remove-orphans
           SSH_HOST: ${{secrets.SSH_HOST}}
           SSH_USER: ${{secrets.SSH_USER}}
           SSH_PORT: ${{secrets.SSH_PORT}}
           SSH_PROJECT_PATH: ${{secrets.SSH_PATH}}
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
         run: |
-          COMPOSE=$(cat compose.yaml)
           ssh -o StrictHostKeyChecking=no -i ${{ github.workspace }}/../private.key $SSH_USER@$SSH_HOST -p $SSH_PORT "$CMD"
         shell: bash
