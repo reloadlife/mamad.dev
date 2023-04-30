@@ -4,7 +4,6 @@ import (
 	`net/http`
 	
 	`github.com/gin-gonic/gin`
-	`github.com/latolukasz/beeorm`
 	`github.com/reloadlife/mamad.dev/v2/services`
 	`github.com/reloadlife/mamad.dev/v2/services/backend/token`
 	`github.com/reloadlife/mamad.dev/v2/services/database/models`
@@ -43,23 +42,11 @@ func Login(c *gin.Context) {
 		return
 	}
 	
-	if services.HasService(services.Gorm) {
-		user := models.User{}
-		db := services.GetService[*gorm.DB](services.Gorm)
-		if db.Where("email = ?", input.Username).First(&user).Error == nil {
-			if auth(user.ID, user.Password, input.Password, c) {
-				return
-			}
-		}
-	}
-	
-	if services.HasService(services.Beeorm) {
-		user := models.UserEntity{}
-		orm := services.GetService[beeorm.Engine](services.Beeorm)
-		if orm.SearchOne(beeorm.NewWhere("Email = ?", input.Username), &user) {
-			if auth(uint(user.ID), user.Password, input.Password, c) {
-				return
-			}
+	user := models.User{}
+	db := services.GetService[*gorm.DB](services.Gorm)
+	if db.Where("email = ?", input.Username).First(&user).Error == nil {
+		if auth(user.ID, user.Password, input.Password, c) {
+			return
 		}
 	}
 	

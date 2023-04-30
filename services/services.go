@@ -116,6 +116,5 @@ func HasService(name string) bool {
 }
 
 var (
-	Beeorm = "orm"
-	Gorm   = "gorm"
+	Gorm = "gorm"
 )
