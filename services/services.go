@@ -109,3 +109,13 @@ func GetServiceSafe[T interface{}](name string) (T, error) {
 	service, err := Container.SafeGet(name)
 	return service.(T), err
 }
+
+func HasService(name string) bool {
+	service, err := Container.SafeGet(name)
+	return err == nil && service != nil
+}
+
+var (
+	Beeorm = "orm"
+	Gorm   = "gorm"
+)

@@ -7,7 +7,12 @@ import (
 
 var (
 	Entities = []beeorm.Entity{
-		&models.User{},
+		&models.UserEntity{},
 		&models.VisitEntity{},
+	}
+	
+	GormEntities = []interface{}{
+		&models.User{},
+		&models.Visits{},
 	}
 )

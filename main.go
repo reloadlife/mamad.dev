@@ -9,7 +9,8 @@ import (
 
 func main() {
 	services.SetupServices(
-		database.SetupORMService(),
+		// database.SetupORMService(),
+		database.SetupGORMService(),
 		backend.SetupBackendService(),
 		frontend.SetupFrontendService(),
 	)

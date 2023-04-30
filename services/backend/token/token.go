@@ -1,6 +1,7 @@
 package token
 
 import (
+	`errors`
 	"fmt"
 	`net/http`
 	"os"
@@ -19,6 +20,10 @@ func GenerateToken(userId uint) (string, error) {
 	}
 	
 	claims := jwt.MapClaims{}
+	claims["iss"] = "mamad.dev"
+	claims["iat"] = time.Now().Unix()
+	claims["aud"] = "users"
+	
 	claims["authorized"] = true
 	claims["user_id"] = userId
 	claims["exp"] = time.Now().Add(time.Hour * time.Duration(tokenLifespan)).Unix()
@@ -51,7 +56,6 @@ func ExtractToken(c *gin.Context) string {
 }
 
 func ExtractTokenID(c *gin.Context) (uint, error) {
-	
 	tokenString := ExtractToken(c)
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
@@ -63,6 +67,13 @@ func ExtractTokenID(c *gin.Context) (uint, error) {
 		return 0, err
 	}
 	claims, ok := token.Claims.(jwt.MapClaims)
+	if !claims.VerifyIssuer("mamad.dev", true) {
+		return 0, errors.New("invalid issuer")
+	}
+	if !claims.VerifyAudience("users", true) {
+		return 0, errors.New("invalid audiance")
+	}
+	
 	if ok && token.Valid {
 		uid, err := strconv.ParseUint(fmt.Sprintf("%.0f", claims["user_id"]), 10, 32)
 		if err != nil {
