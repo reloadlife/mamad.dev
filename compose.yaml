@@ -17,6 +17,8 @@ services:
       - mamad-net
     volumes:
       - ./mysql/:/var/lib/mysql
+    secrets:
+      - mysql_root_password
 
   redis:
     restart: always
@@ -54,6 +56,9 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    secrets:
+      - mysql_root_password
+      - config_file
     environment:
       CONFIG_FILE: /run/secrets/config_file
     tty: true
