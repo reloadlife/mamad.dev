@@ -1,113 +1,239 @@
 import Image from 'next/image'
+import profile from "./profile.jpeg"
+import {
+    FaEnvelope,
+    FaGithub,
+    FaInstagram,
+    FaLinkedinIn,
+    FaLocationPin,
+    FaMobile,
+    FaTelegram,
+    FaTwitter,
+    FaYoutube
+} from "react-icons/fa6";
+
+import {Carrois_Gothic} from 'next/font/google'
+
+const cGothic = Carrois_Gothic({weight: "400", subsets: ['latin']})
+
+const latestWritings = [
+    {
+        title: "Hello World - Testing the Blog",
+        url: "/blog/hello-world",
+        date: "22 Aug, 2023"
+    }
+]
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    return (
+        <main className="min-h-screen p-4 md:p-12">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-10 md:mt-10 mt-4">
+                <div>
+                    <Image
+                        width={300}
+                        height={300}
+                        className="rounded-full"
+                        src={profile}
+                        alt="mohammad mahdi afshar"
+                    />
+                </div>
+                <div className="flex gap-2 flex-col">
+                    <h1 className={`font-bold text-3xl md:text-5xl ${cGothic.className}`}>
+                        Mohammad Mahdi Afshar
+                    </h1>
+                    <h3 className={`font-semibold text-xl md:text-2xl text-gray-400 ${cGothic.className}`}>
+                        Senior Software Developer</h3>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+                    <div className="flex gap-4">
+                        <a href="https://github.com/reloadlife" target="_blank">
+                            <FaGithub className="w-6 h-6"/>
+                        </a>
+                        <a href="https://linkedin.com/in/reloadlife" target="_blank">
+                            <FaLinkedinIn className="w-6 h-6"/>
+                        </a>
+                        <a href="https://t.me/reloadlife" target="_blank">
+                            <FaTelegram className="w-6 h-6"/>
+                        </a>
+                        <a href="https://x.com/mamad_dev" target="_blank">
+                            <FaTwitter className="w-6 h-6"/>
+                        </a>
+                        <a href="https://youtube.com/@reloadlife" target="_blank">
+                            <FaYoutube className="w-6 h-6"/>
+                        </a>
+                        <a href="https://instagram.com/mamad.dev" target="_blank">
+                            <FaInstagram className="w-6 h-6"/>
+                        </a>
+                    </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+                    <div className="flex gap-4">
+                        <span className={`flex justify-center items-center gap-2 ${cGothic.className}`}>
+                            <FaLocationPin className="w-6 h-6"/> Tehràn, Iran 🇮🇷
+                        </span>
+                    </div>
+                    <div className="flex gap-4">
+                        <a
+                            href="mailto:me@mamad.dev" target="_blank"
+                            className={`flex justify-center items-center gap-2 ${cGothic.className}`}>
+                            <FaEnvelope className="w-6 h-6"/> me@mamad.dev
+                        </a>
+                    </div>
+                    <div className="flex gap-4">
+                        <a
+                            href="tel:+98 935 931 0395" target="_blank"
+                            className={`flex justify-center items-center gap-2 ${cGothic.className}`}>
+                            <FaMobile className="w-6 h-6"/> +98 935 931 0395
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+            <div className="flex flex-col justify-center items-center">
+                <div className="w-[75%]">
+                    <h2 className={`font-bold text-2xl md:text-4xl mt-10 ${cGothic.className}`}>
+                        About Me
+                    </h2>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
+                    <p className="text-gray-400 mt-4 text-justify">
+                        As a knowledgeable software engineer with extensive experience in software development, I have
+                        such
+                        a diverse set of skills that includes level of competence in a wide range of programming
+                        languages
+                        such as <span className="text-blue-600">Golang</span>, <span className="text-green-500">
+                        Node.js</span>, <span className="text-blue-300">Flutter</span> & <span
+                        className="text-blue-300">Dart</span>, <span className="text-yellow-400">Python</span>, <span
+                        className="text-indigo-600">PHP</span>, <span
+                        className="text-blue-900">Solidity</span> and
+                        <span className="text-orange-500"> JavaScript</span>, as well as a thorough
+                        understanding of modern frameworks such as React, NextJS, NestJS, Laravel, Django, Flask,
+                        Bootstrap,
+                        and Tailwind. My expertise in databases, which include MySQL, PostgreSQL, Redis, InfluxDB, and
+                        MongoDB, along with a fundamental understanding of Neo4j, enables me to develop and implement
+                        highly
+                        scalable and resilient solutions that satisfy the demands of today's fast-paced corporate
+                        environment. I am also experienced in automation approaches, having used Ansible, Docker, and
+                        Kubernetes to enable rapid and efficient deployment procedures.
+                    </p>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+                    <p className="text-gray-400 mt-4  text-justify">
+                        I am a committed team member with a high relevance in lifelong learning and personal
+                        development. I
+                        am now studying English Translation and Literature at Karaj Azad University, and I am fluent in
+                        Persian, English, and have a rudimentary understanding of French and Turkish. My passion in AI
+                        and
+                        machine learning runs rampant, and I am always looking for new methods to broaden my expertise
+                        and
+                        keep current in the sector. I have expertise with Linux networking, virtualization systems, and
+                        network infrastructure deployment, as well as designing Telegram and Discord bots, web-scraping,
+                        and
+                        working with GraphQL. furthermore, I am well acquainted with Agile methodologies and also have
+                        worked effectively in Agile development.
+                    </p>
+
+                    <p className="text-gray-400 mt-4  text-justify">
+                        I am confident in my capabilities to provide value to any firm as a proactive individual with a
+                        comprehensive comprehension of software development and its underlying ideas. I am dedicated to
+                        remaining current on industry trends, and I am constantly willing to take on new challenges and
+                        master new skills.
+                    </p>
+
+
+                    <div className="mt-10 flex gap-4">
+                        <a href="/resume/" className="p-3 bg-blue-950 rounded-xl">Resumè</a>
+                        <a href="/cv/" className="p-3 bg-blue-900 rounded-xl">CV</a>
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex flex-col justify-center items-center">
+                <div className="w-[75%] flex flex-col gap-3">
+                    <h2 className={`font-bold text-2xl md:text-4xl mt-10 ${cGothic.className}`}>
+                        Latest Writings:
+                    </h2>
+
+                    {
+                        latestWritings.map((post, index) => (
+                            <p
+                                key={index}
+                                className="text-gray-400 text-justify flex justify-start items-center gap-1">
+                                {post.date} | <a
+                                href={post.url}
+                                className="underline ">{post.title}</a>
+                            </p>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div className="flex flex-col justify-center items-center">
+                <div className="w-[75%] flex flex-col gap-3">
+                    <h2 className={`font-bold text-2xl md:text-4xl mt-10 ${cGothic.className}`}>
+                        Fun Projects that i have done:
+                    </h2>
+
+
+                    <p className="text-gray-400 text-justify">
+                        <a
+                            href="https://t.me/DollarChandeBot"
+                            className="text-blue-500 underline">Dollar Chande ? 💵 (means how much is USD price
+                            ratio)</a> is a Telegram Bot, that is online 24/7 and you can use it to get the latest USD
+                        price ratio in
+                        Iran; it also comes with a Channel that you can join to, to get the latest USD Price every 5
+                        minuets.
+                        <br/>
+                        you can find the Telegram Channel here: <a
+                        href="https://t.me/AlanDollarChande"
+                        className="text-blue-500 underline">
+                        💸 Dollar Chande ?! | الان دلار چنده ؟</a>
+                        <br/>
+                        This project is written in <span className="text-blue-600">Golang</span> and uses <span
+                        className="text-red-800">Redis</span> as a temporarily cache and <span
+                        className="text-blue-600">Docker</span> for deployment.
+                    </p>
+
+                    <p className="text-gray-400 text-justify">
+                        <a
+                            href="https://github.com/TeleLib/TeleLib"
+                            className="text-blue-500 underline">TeleLib
+                        </a> MultiLanguage Telegram Bot API Wrapper.
+                    </p>
+
+                    <p className="text-gray-400 text-justify">
+                        <a
+                            href="https://github.com/reloadlife/telebot"
+                            className="text-blue-500 underline">TeleBot
+                        </a> a hard fork of the Original Repo, Telegram Wrapper for Golang.
+                    </p>
+
+                    <p className="text-gray-400 text-justify">
+                        <a
+                            href="https://github.com/reloadlife/nextgo"
+                            className="text-blue-500 underline">NextGo
+                        </a> A Simple Solution to use NextJS with Golang as a Backend.
+                    </p>
+
+                    <p className="text-gray-400 text-justify">
+                        <a
+                            href="https://github.com/reloadlife/thread_py"
+                            className="text-blue-500 underline">ThreadPy
+                        </a> A Simple Python Library to use Threads.
+                    </p>
+
+                    <p className="text-gray-200 text-justify flex justify-start items-center gap-1">
+                        All my OpenSourced projects are accessible on my <span
+                        className="underline inline-flex justify-center items-center gap-1">
+                        My <a
+                        href="https://github.com/reloadlife" target="_blank"
+                        className="inline-flex gap-1">
+                            <FaGithub className="w-6 h-6"/> GitHub
+                        </a>
+                    </span>
+                    </p>
+
+                    <p className="text-gray-700 text-justify">
+                        This list will be updated soon...
+                    </p>
+                </div>
+            </div>
+        </main>
+    )
 }
