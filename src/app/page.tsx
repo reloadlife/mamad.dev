@@ -109,7 +109,7 @@ export default function Home() {
                         and Tailwind. My expertise in databases, which include MySQL, PostgreSQL, Redis, InfluxDB, and
                         MongoDB, along with a fundamental understanding of Neo4j, enables me to develop and implement
                         highly
-                        scalable and resilient solutions that satisfy the demands of today's fast-paced corporate
+                        scalable and resilient solutions that satisfy the demands of today{"'"}s fast-paced corporate
                         environment. I am also experienced in automation approaches, having used Ansible, Docker, and
                         Kubernetes to enable rapid and efficient deployment procedures.
                     </p>
